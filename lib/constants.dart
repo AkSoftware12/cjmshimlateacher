@@ -25,7 +25,9 @@ class AppAssets {
 
 class ApiRoutes {
   // static const String baseUrl = "https://apicjm.cjmambala.co.in/api";
-  static const String baseUrl = "https://apicjm.cjmshimla.in/api";
+  // static const String baseUrl = "https://apicjm.cjmshimla.in/api";
+  static const String baseUrl = "https://softcjm.cjmshimla.in/api";
+
   static const String baseUrl2 = "https://webcjm.cjmambala.co.in/api";
 
   // static const String baseUrl = "http://192.168.1.7/CJM/api";
