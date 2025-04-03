@@ -399,16 +399,14 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                                   itemBuilder: (context, index) {
                                     final assignment = assignments[index];
                                     String description = html_parser
-                                            .parse(assignment['description'])
+                                            .parse(assignment['description']??'')
                                             .body
                                             ?.text ??
                                         '';
-                                    String startDate = DateFormat('dd-MM-yyyy')
-                                        .format(DateTime.parse(
-                                            assignment['start_date']));
+                                    String startDate = DateFormat('dd-MM-yyyy').format(DateTime.parse(assignment['start_date']??''));
                                     String endDate = DateFormat('dd-MM-yyyy')
                                         .format(DateTime.parse(
-                                            assignment['end_date']));
+                                            assignment['end_date']??''));
 
                                     return GestureDetector(
                                       onTap: () {
@@ -475,10 +473,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                                                                   .start,
                                                           children: [
                                                             Text(
-                                                              assignment[
-                                                                      'title']
-                                                                  .toString()
-                                                                  .toUpperCase(),
+                                                              assignment['title'].toString().toUpperCase()??'',
                                                               style: GoogleFonts
                                                                   .poppins(
                                                                 fontSize: 16,
@@ -530,7 +525,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                                                           'Total Marks',
                                                           assignment[
                                                                   'total_marks']
-                                                              .toString(),
+                                                              .toString()??'',
                                                           Icons
                                                               .confirmation_number),
 
@@ -590,9 +585,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                                                       color: Colors.blueAccent,
                                                       onTap: () async {
                                                         final Uri _url = Uri
-                                                            .parse(assignment[
-                                                                    'attach_url']
-                                                                .toString());
+                                                            .parse(assignment['attach_url'].toString()??'');
 
                                                         if (!await launchUrl(
                                                             _url)) {
@@ -609,20 +602,18 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                                                       color: Colors.orange,
                                                       onTap: () {
                                                         _showUpdateConfirmationDialog(
-                                                          assignment['id'],
-                                                          assignment[
-                                                                  'start_date']
-                                                              .toString(),
+                                                          assignment['id']??'',
+                                                          assignment['start_date'].toString()??'',
                                                           assignment['end_date']
-                                                              .toString(),
+                                                              .toString()??'',
                                                           assignment['title']
-                                                              .toString(),
+                                                              .toString()??'',
                                                           assignment[
                                                                   'description']
-                                                              .toString(),
+                                                              .toString()??'',
                                                           assignment[
                                                                   'total_marks']
-                                                              .toString(),
+                                                              .toString()??'',
                                                         );
                                                       },
                                                       // onTap: () {
@@ -740,7 +731,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15), // Rounded Corners
           ),
-          title: Row(
+          title: const Row(
             children: [
               Icon(Icons.warning_amber_rounded, color: Colors.red, size: 28),
               // Warning Icon
@@ -749,7 +740,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
-          content: Text(
+          content: const Text(
             "Are you sure you want to delete this assignment?",
             style: TextStyle(fontSize: 16),
           ),
@@ -878,6 +869,23 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
 
   Future<void> _deleteAssignment(String assignmentId) async {
     try {
+      // Show Progress Dialog
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Row(
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(width: 20),
+                Text("Deleting assignment..."),
+              ],
+            ),
+          );
+        },
+      );
+
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token'); // Retrieve Token
       print("Token: $token");
@@ -891,6 +899,12 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
           "Content-Type": "application/json",
         },
       );
+
+      // Wait for 5 seconds before closing the dialog
+      await Future.delayed(Duration(seconds: 5));
+
+      // Close the dialog
+      Navigator.of(context, rootNavigator: true).pop();
 
       if (response.statusCode == 200) {
         print("Assignment Deleted Successfully!");

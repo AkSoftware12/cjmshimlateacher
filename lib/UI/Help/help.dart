@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../constants.dart';
@@ -40,13 +41,13 @@ class _DoubtSessionState extends State<HelpScreen> {
           ? null
           :  AppBar(
         backgroundColor: AppColors.primary,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.black),
         title:  Text("Help",
           style: GoogleFonts.radioCanada(
             textStyle: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.normal,
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
 
@@ -64,8 +65,8 @@ class _DoubtSessionState extends State<HelpScreen> {
                 // height: 150.sp,
                 width: double.infinity,
                 child: Opacity(
-                  opacity: 0.1, // Adjust the opacity value (0.0 to 1.0)
-                  child: Image.asset(AppAssets.logo),
+                  opacity: 0.2, // Adjust the opacity value (0.0 to 1.0)
+                  child: Image.asset(AppAssets.cjmlogo,height: 200.sp,width: 100.sp,),
                 ),
               ),
             ),

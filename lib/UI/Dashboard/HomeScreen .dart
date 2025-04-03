@@ -62,10 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
       'name': 'Gallery',
       'image': 'assets/gallery.png',
     },
-    {
-      'name': 'Report Card',
-      'image': 'assets/report.png',
-    },
+    // {
+    //   'name': 'Report Card',
+    //   'image': 'assets/report.png',
+    // },
   ];
 
   @override
@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
         print(teacherData);
       });
     } else {
-      _showLoginDialog();
+      // _showLoginDialog();
     }
   }
 
@@ -129,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
         print(assignments);
       });
     } else {
-      _showLoginDialog();
+      // _showLoginDialog();
     }
   }
 
@@ -208,33 +208,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   _buildGridview(),
                   const SizedBox(height: 10),
 
-                  _buildsellAll('Assignment', ''),
+                  // _buildsellAll('Assignment', ''),
                   _buildListView(),
+                  _buildsellAll('Latest Photo', ''),
+                  Container(
+                    height: 220,
+                    width: double.infinity,
+                    child: Image.network(
+                      'https://webcjm.cjmshimla.in/upload/banners/1740211232_cjmshimlabanner1.png',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
 
                   Container(
                     height: 220,
                     width: double.infinity,
                     child: Image.network(
-                      'https://api-ap-south-mum-1.openstack.acecloudhosting.com:8080/franciscan/SchImg/CJMAMB/PhotoAlbum/Full/Photo_528587.jpg',
+                      'https://webcjm.cjmshimla.in/upload/banners/1740211256_cjmshimlabanner3.png',
                       fit: BoxFit.fill,
                     ),
                   ),
-                  Container(
-                    height: 220,
-                    width: double.infinity,
-                    child: Image.network(
-                      'https://api-ap-south-mum-1.openstack.acecloudhosting.com:8080/franciscan/SchImg/CJMAMB/PhotoAlbum/Full/Photo_524101.jpg',
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Container(
-                    height: 220,
-                    width: double.infinity,
-                    child: Image.network(
-                      'https://api-ap-south-mum-1.openstack.acecloudhosting.com:8080/franciscan/SchImg/CJMAMB/PhotoAlbum/Full/Photo_542310.jpg',
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+
 
 
                 ],
@@ -762,10 +756,9 @@ class CarouselExample extends StatefulWidget {
 
 class _CarouselExampleState extends State<CarouselExample> {
   final List<String> imgList = [
-    'https://api-ap-south-mum-1.openstack.acecloudhosting.com:8080/franciscan/SchImg/CJMAMB/PhotoAlbum/Full/Photo_542310.jpg',
-    'https://api-ap-south-mum-1.openstack.acecloudhosting.com:8080/franciscan/SchImg/CJMAMB/PhotoAlbum/Full/Photo_532542.jpg',
-    'https://api-ap-south-mum-1.openstack.acecloudhosting.com:8080/franciscan/SchImg/CJMAMB/PhotoAlbum/Full/Photo_522725.jpg',
-    'https://cjmambala.in/images/building.png',
+    'https://webcjm.cjmshimla.in/upload/banners/1740211232_cjmshimlabanner1.png',
+    'https://webcjm.cjmshimla.in/upload/banners/1740211243_cjmshimlabanner2.png',
+    'https://webcjm.cjmshimla.in/upload/banners/1740211256_cjmshimlabanner3.png',
   ];
 
   int _currentIndex = 0;

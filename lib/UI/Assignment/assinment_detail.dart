@@ -1,4 +1,6 @@
 import 'package:cjmshimlateacher/UI/Assignment/view_assignment_detail.dart';
+import 'package:cjmshimlateacher/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,8 +23,7 @@ class _AssignmentDetailScreenState extends State<AssignmentDetailScreen> {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     final response = await http.get(
-      Uri.parse(
-          'https://apicjm.cjmshimla.in/api/teacher-assignment/$assignmentId'),
+      Uri.parse('${ApiRoutes.getAssignmentsDeatils}$assignmentId'),
       headers: {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
@@ -133,71 +134,60 @@ class _AssignmentDetailScreenState extends State<AssignmentDetailScreen> {
                             // ),
                             borderRadius: BorderRadius.circular(0),
                           ),
-                          padding:  EdgeInsets.all(10.sp),
+                          padding: EdgeInsets.all(10.sp),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                     children: [
                                       Text(
                                         "Start : ${data['start_date']}",
-                                        style: GoogleFonts
-                                            .poppins(
+                                        style: GoogleFonts.poppins(
                                           fontSize: 14.sp,
                                           fontWeight: FontWeight.w600,
-                                          color: Colors.black
-                                          ,
+                                          color: Colors.black,
                                         ),
                                       ),
                                       Text(
                                         "Due  : ${data['end_date']}",
-                                        style: GoogleFonts
-                                            .poppins(
+                                        style: GoogleFonts.poppins(
                                           fontSize: 14.sp,
                                           fontWeight: FontWeight.w600,
-                                          color: Colors.black
-                                          ,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ],
                                   ),
                                   Chip(
-                                    label: Text("Marks: ${data['total_marks']}",
-                                      style: GoogleFonts
-                                          .poppins(
+                                    label: Text(
+                                      "Marks: ${data['total_marks']}",
+                                      style: GoogleFonts.poppins(
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.black
-                                        ,
+                                        color: Colors.black,
                                       ),
-                                    )
-                                    ,
+                                    ),
                                     backgroundColor:
-                                    Colors.white.withOpacity(0.2),
+                                        Colors.white.withOpacity(0.2),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 8),
                                   ),
-
                                 ],
                               ),
-
                               Text(
                                 data['description'],
-                                style: GoogleFonts
-                                    .poppins(
+                                style: GoogleFonts.poppins(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black45,
                                   height: 1.5,
                                 ),
-
                               ),
                               const SizedBox(height: 16),
-
                             ],
                           ),
                         ),
@@ -208,15 +198,13 @@ class _AssignmentDetailScreenState extends State<AssignmentDetailScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                             Text(
+                            Text(
                               "Students",
-                               style: GoogleFonts
-                                   .poppins(
-                                 fontSize: 18.sp,
-                                 fontWeight: FontWeight.w600,
-                                 color: Colors.black
-                                 ,
-                               ),
+                              style: GoogleFonts.poppins(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
                             ),
                             Chip(
                               label: Text("${data['students'].length} Students",
@@ -236,95 +224,130 @@ class _AssignmentDetailScreenState extends State<AssignmentDetailScreen> {
                     final student = data['students'][index];
                     return Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 3.0, vertical: 5.0),
-                      child: Card(
-                        color: Colors.grey.shade200,
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Padding(
-                          padding:  EdgeInsets.all(5.sp),
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 25,
-                                backgroundColor: Colors.grey.withOpacity(0.2),
-                                child: Text(
-                                  student['student_name'][0].toUpperCase(),
-                                  style:  TextStyle(
-                                      fontSize: 16.sp,
-                                      color: Colors.purple,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      student['student_name'],
-                                      style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600),
+                          horizontal: 8.0, vertical: 6.0),
+                      child: SizedBox(
+                        width: 100.sp, // Set card width
+                        child: Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                  radius: 30,
+                                  backgroundColor: Colors.blueAccent.shade100,
+                                  child: Text(
+                                    student['student_name'][0].toUpperCase(),
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
                                     ),
-                                    const SizedBox(height: 4),
-                                    Row(
-                                      children: [
-                                        const Icon(Icons.grade,
-                                            size: 16, color: Colors.yellow),
-                                        const SizedBox(width: 4),
-                                        Text("Marks: ${student['marks']??'N/A'}",
+                                  ),
+                                ),
+                                const SizedBox(width: 15),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            student['student_name'],
+                                            style: const TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+
+                                          Container(
+                                            height: 30.sp,
+                                            width: 90.sp,
+                                            decoration:  BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.circular(10)
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.only(left: 10.sp,right: 10.sp),
+                                              child: TextFormField(
+                                                keyboardType: TextInputType.number,
+                                                decoration: InputDecoration(
+                                                  hintText: 'Enter marks',
+                                                  // labelText: "Enter Marks",
+                                                  hintStyle: TextStyle(fontSize: 10.sp),
+                                                  border:InputBorder.none
+                                                ),
+                                                style: TextStyle(fontSize: 10.sp),
+
+                                              ),
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.grade,
+                                              size: 18,
+                                              color: Colors.orangeAccent),
+                                          const SizedBox(width: 6),
+                                          Text(
+                                              "Marks: ${student['marks'] ?? 'N/A'}",
+                                              style: const TextStyle(
+                                                  fontSize: 14)),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.check_circle,
+                                            size: 18,
+                                            color: student['attendance'] == 1
+                                                ? Colors.green
+                                                : Colors.red,
+                                          ),
+                                          const SizedBox(width: 6),
+                                          Text(
+                                            "Attendance: ${student['attendance'] == 1 ? 'Present' : 'Absent'}",
                                             style:
-                                                const TextStyle(fontSize: 14)),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.check_circle,
-                                          size: 16,
-                                          color: student['attendance'] == 1
-                                              ? Colors.green
-                                              : Colors.red,
-                                        ),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          "Attendance: ${student['attendance'] == 1 ? 'Present' : 'Absent'}",
-                                          style: const TextStyle(fontSize: 14),
-                                        ),
-                                      ],
-                                    ),
-                                    Text("Date: ${student['date']?? 'N/A'}",
-                                        style: const TextStyle(fontSize: 14)),
-                                  ],
+                                                const TextStyle(fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text("Date: ${student['date'] ?? 'N/A'}",
+                                          style: const TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.black54)),
+                                      const SizedBox(height: 8),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              if (student['attach_url'] != null)
-                                IconButton(
-                                  icon: const Icon(Icons.attach_file,
-                                      color: Colors.blue),
-                                  onPressed: () async {
+                                if (student['attach_url'] != null)
+                                  IconButton(
+                                    icon: const Icon(Icons.attach_file,
+                                        color: Colors.blue),
+                                    onPressed: () {
                                       Navigator.push(
                                         context,
-                                        MaterialPageRoute(builder: (context) =>  WebViewPage(
-
-                                        )),
+                                        MaterialPageRoute(
+                                            builder: (context) => WebViewPage(
+                                                // url: student['attach_url']
+                                                )),
                                       );
-
-
-                                      // final Uri _url = Uri
-                                      //     .parse(student['attach_url']
-                                      //     .toString());
-                                      //
-                                      // if (!await launchUrl(
-                                      // _url)) {
-                                      //   throw Exception(
-                                      //       'Could not launch $_url');
-                                      // }
-                                  },
-                                ),
-                            ],
+                                    },
+                                  ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

@@ -111,7 +111,6 @@ class _AssignmentUploadScreenState extends State<AssignmentUploadScreen> {
   }
 
   Future<void> fetchClasses() async {
-
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('token');
@@ -128,8 +127,8 @@ class _AssignmentUploadScreenState extends State<AssignmentUploadScreen> {
         final Map<String, dynamic> responseData = json.decode(response.body);
         setState(() {
           classes = List<Map<String, dynamic>>.from(responseData['classes']);
-          subject = List<Map<String, dynamic>>.from(responseData['subjects']);
           section = List<Map<String, dynamic>>.from(responseData['sections']);
+          subject = List<Map<String, dynamic>>.from(responseData['subjects']);
           // sections = List<Map<String, dynamic>>.from(responseData['data']['sections']);
           isLoading = false;
         });
@@ -342,7 +341,7 @@ class _AssignmentUploadScreenState extends State<AssignmentUploadScreen> {
                                       items: classes.map((c) {
                                         return DropdownMenuItem<int>(
                                           value: c["id"],
-                                          child: Text(c["class"]),
+                                          child: Text(c["title"].toString()),
                                         );
                                       }).toList(),
                                       onChanged: (value) {
@@ -394,7 +393,7 @@ class _AssignmentUploadScreenState extends State<AssignmentUploadScreen> {
                                       items: section.map((c) {
                                         return DropdownMenuItem<int>(
                                           value: c["id"],
-                                          child: Text(c["section"]),
+                                          child: Text(c["title"]),
                                         );
                                       }).toList(),
                                       onChanged: (value) {

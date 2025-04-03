@@ -76,7 +76,6 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
 // Update state with fetched data
       });
     } else {
-      _showLoginDialog();
       setState(() {
         isLoading = false;
       });

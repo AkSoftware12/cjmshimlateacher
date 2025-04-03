@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cjmshimlateacher/UI/Gallery/Video/video_list.dart';
+import 'package:cjmshimlateacher/UI/Gallery/Video/video_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -87,11 +88,19 @@ class _GalleryScreenState extends State<VideoAlbumListScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) {
-                  return VideoListScreen( data: images[index],);
-                },
+                builder: (context) => VideoPlayer(
+                  url: images[index]['video_url'], title: '', videoId: null, videoStatus: '',
+                ),
               ),
             );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) {
+            //       return VideoListScreen( data: images[index],);
+            //     },
+            //   ),
+            // );
           },
           child: Card(
             color: Colors.white,
@@ -109,9 +118,13 @@ class _GalleryScreenState extends State<VideoAlbumListScreen> {
                       child: CachedNetworkImage(
                         imageUrl: images[index]['cover_image_url'].toString(),
                         fit: BoxFit.cover,
-                        height: 100.sp,
+                        height: 120.sp,
+                        width: double.infinity,
                         placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        errorWidget: (context, url, error) => SizedBox(
+                            width: double.infinity,
+                            child: Image.network('https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930',width: double.infinity,)
+                        ),
                       ),
                     ),
                   ),
@@ -136,8 +149,7 @@ class _GalleryScreenState extends State<VideoAlbumListScreen> {
                       _buildInfoRow(Icons.calendar_today,
                           'Event Date: ${images[index]['event_date']}'),
 
-                      _buildInfoRow(Icons.photo_library,
-                          'Total Photo(s): 5'),
+                      // _buildInfoRow(Icons.photo_library, 'Total Photo(s): 5'),
                     ],
                   ),
                 ],

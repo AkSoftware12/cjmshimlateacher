@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -60,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
         _controller.forward(); // Start animation once data is loaded
       });
     } else {
-      _showLoginDialog();
+      // _showLoginDialog();
     }
   }
 
@@ -175,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                               Text(
                                 '${teacherData?['first_name']??''} ${teacherData?['last_name']??''}',
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 20,
+                                  fontSize: 13.sp,
                                   fontWeight: FontWeight.bold,
                                   color:AppColors.textblack,
                                 ),
@@ -184,7 +185,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                               Text(
                                 teacherData?['email']??'',
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 14,
+                                  fontSize: 11.sp,
                                   color: Colors.grey,
                                 ),
                               ),
@@ -192,7 +193,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                               Text(
                                 teacherData?['phone']??'',
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 14,
+                                  fontSize: 11.sp,
                                   color: Colors.grey,
                                 ),
                               ),
@@ -208,7 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
               ),
 
 
-              const SizedBox(height: 20),
+               SizedBox(height: 20.sp),
               _buildAnimatedSection('Personal Information', [
                 buildProfileRow('Name', '${teacherData?['first_name']??''} ${teacherData?['last_name']??''}'),
                 buildProfileRow('Date of Birth', teacherData?['dob']??''),
@@ -286,14 +287,14 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
           children: [
             Text(
               "$label :",
-              style:  TextStyle(fontWeight: FontWeight.bold, color: AppColors.textblack),
+              style:  TextStyle(fontWeight: FontWeight.bold, color: AppColors.textblack,fontSize: 12.sp),
             ),
-            const SizedBox(width: 10),  // Add some space between label and value
+            SizedBox(width: 10.sp),  // Add some space between label and value
             Expanded(
               child: Text(
                 value.isNotEmpty ? value : 'N/A',
                 overflow: TextOverflow.visible,
-                style:  TextStyle(color: AppColors.textblack),
+                style:  TextStyle(color: AppColors.textblack,fontSize: 12.sp),
               ),
             ),
           ],

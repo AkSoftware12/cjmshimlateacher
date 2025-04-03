@@ -89,7 +89,6 @@ class _TimeTableScreenState extends State<TimeTableTeacherScreen> {
 // Update state with fetched data
       });
     } else {
-      _showLoginDialog();
       setState(() {
         isLoading = false;
       });
@@ -197,7 +196,7 @@ class _TimeTableScreenState extends State<TimeTableTeacherScreen> {
                       Stack(
                         children: [
                           Container(
-                            height: 30.sp,
+                            height: 50.sp,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
@@ -285,7 +284,7 @@ class _TimeTableScreenState extends State<TimeTableTeacherScreen> {
                                       padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 5.sp),
                                       margin: const EdgeInsets.symmetric(horizontal: 5),
                                       decoration: BoxDecoration(
-                                        color: isSelected ? Colors.white : Colors.grey,
+                                        color: isSelected ? Colors.black : Colors.grey,
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: Center(
@@ -300,7 +299,7 @@ class _TimeTableScreenState extends State<TimeTableTeacherScreen> {
                                               style: TextStyle(
                                                 fontSize: 13.sp,
                                                 fontWeight: FontWeight.bold,
-                                                color: isSelected ? Colors.black : Colors.white,
+                                                color: isSelected ? Colors.white : Colors.white,
                                               ),
                                             ),
                                           ],
@@ -387,7 +386,13 @@ class _TimeTableScreenState extends State<TimeTableTeacherScreen> {
                                                   .withOpacity(0.1),
                                               shape: BoxShape.circle,
                                             ),
-                                            child: Image.asset('assets/education.png',height: 50.sp,width: 50.sp,)
+                                            child: Center(child: Text(schedule['period'].toString(),
+                                              style: GoogleFonts.poppins(
+                                                fontSize: TextSizes.textmedium,
+                                                fontWeight: FontWeight.w700,
+                                                color:AppColors.textwhite,
+                                              ),                                            )),
+                                            // child: Image.asset('assets/education.png',height: 50.sp,width: 50.sp,)
                                           ),
                                           title: Text(
                                             schedule['subject_name'],
@@ -402,27 +407,27 @@ class _TimeTableScreenState extends State<TimeTableTeacherScreen> {
                                                 .start,
                                             children: [
                                               SizedBox(height: 6),
-                                              Row(
-                                                children: [
-                                                  Icon(Icons
-                                                      .watch_later_outlined,
-                                                      size: 18,
-                                                      color: Colors.white
-                                                         ),
-                                                  SizedBox(width: 6),
-                                                  Text(
-                                                    "${schedule['start_time']} - ${schedule['end_time']}",
-                                                    style: GoogleFonts
-                                                        .poppins(
-                                                      fontSize: 12.sp,
-                                                      fontWeight: FontWeight.w600,
-                                                      color: Colors.white
-                                                          ,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 5),
+                                              // Row(
+                                              //   children: [
+                                              //     Icon(Icons
+                                              //         .watch_later_outlined,
+                                              //         size: 18,
+                                              //         color: Colors.white
+                                              //            ),
+                                              //     SizedBox(width: 6),
+                                              //     Text(
+                                              //       "${schedule['start_time']} - ${schedule['end_time']}",
+                                              //       style: GoogleFonts
+                                              //           .poppins(
+                                              //         fontSize: 12.sp,
+                                              //         fontWeight: FontWeight.w600,
+                                              //         color: Colors.white
+                                              //             ,
+                                              //       ),
+                                              //     ),
+                                              //   ],
+                                              // ),
+                                              // SizedBox(height: 5),
 
                                               Divider(
                                                 height: 2.sp,
@@ -433,20 +438,19 @@ class _TimeTableScreenState extends State<TimeTableTeacherScreen> {
 
                                               Row(
                                                 children: [
-                                                  SizedBox(
-                                                    height: 18,
-                                                    width: 18,
-                                                    child: Image.asset(
-                                                        'assets/teacher.png',
-                                                        color: Colors.white),
-                                                  ),
+                                                  // SizedBox(
+                                                  //   height: 18,
+                                                  //   width: 18,
+                                                  //   child: Image.asset(
+                                                  //       'assets/teacher.png',
+                                                  //       color: Colors.white),
+                                                  // ),
                                                   SizedBox(width: 6),
                                                   Expanded(
                                                     child: Row(
                                                       children: [
                                                         Text(
-                                                          '${schedule['class']
-                                                              .toString()} ${'(${schedule['section']
+                                                          '${'Class : '} ${'(${schedule['class']
                                                               .toString()})'}',
                                                           style: GoogleFonts
                                                               .poppins(
@@ -457,17 +461,30 @@ class _TimeTableScreenState extends State<TimeTableTeacherScreen> {
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                         ),
+                                                        // Text(
+                                                        //   '${schedule['class']
+                                                        //       .toString()} ${'(${schedule['section']
+                                                        //       .toString()})'}',
+                                                        //   style: GoogleFonts
+                                                        //       .poppins(
+                                                        //     fontSize: 14,
+                                                        //     fontWeight: FontWeight.w600,
+                                                        //     color: Colors.white,
+                                                        //   ),
+                                                        //   overflow: TextOverflow
+                                                        //       .ellipsis,
+                                                        // ),
                                                       ],
                                                     ),
                                                   ),
                                                   Row(
                                                     children: [
-                                                      Icon(Icons.meeting_room,
-                                                          size: 18,
-                                                          color: Colors.white),
+                                                      // Icon(Icons.meeting_room,
+                                                      //     size: 18,
+                                                      //     color: Colors.white),
                                                       SizedBox(width: 6),
                                                       Text(
-                                                        "Room No. ${schedule['room']}",
+                                                        "Section :  ${schedule['section']}",
                                                         style: GoogleFonts
                                                             .poppins(
                                                           fontSize: 12.sp,

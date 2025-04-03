@@ -457,120 +457,124 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
                 thumbVisibility: true,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    border: TableBorder.all(color: Colors.black, width: 1),
-                    headingRowColor: MaterialStateProperty.all(Colors.blueAccent.shade100),
-                    columns: [
-                      DataColumn(
-                        label: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('Sr No.', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('Student ID', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text('Roll No', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Student Name", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black), textAlign: TextAlign.center),
-                        ),
-                      ),
-                      ...dates.map((date) => DataColumn(
-                        label: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(date, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black), textAlign: TextAlign.center),
-                        ),
-                      )).toList(),
-                      DataColumn(
-                        label: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Total Present", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Total Absent", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Total Leave", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text("Total Holiday", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(" Total Percentage ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
-                        ),
-                      ),
-                    ],
-                    rows: students.asMap().entries.map((entry) {
-                      int index = entry.key + 1; // Sr No. (starting from 1)
-                      var student = entry.value;
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
 
-                      int totalP = 0, totalA = 0, totalL = 0, totalH = 0;
-                      int totalDays = dates.length;
+                    child: DataTable(
+                      border: TableBorder.all(color: Colors.black, width: 1),
+                      headingRowColor: MaterialStateProperty.all(Colors.blueAccent.shade100),
+                      columns: [
+                        DataColumn(
+                          label: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Sr No.', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Student ID', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Roll No', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("Student Name", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black), textAlign: TextAlign.center),
+                          ),
+                        ),
+                        ...dates.map((date) => DataColumn(
+                          label: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(date, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black), textAlign: TextAlign.center),
+                          ),
+                        )).toList(),
+                        DataColumn(
+                          label: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("Total Present", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("Total Absent", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("Total Leave", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("Total Holiday", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
+                          ),
+                        ),
+                        DataColumn(
+                          label: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(" Total Percentage ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)),
+                          ),
+                        ),
+                      ],
+                      rows: students.asMap().entries.map((entry) {
+                        int index = entry.key + 1; // Sr No. (starting from 1)
+                        var student = entry.value;
 
-                      for (var date in dates) {
-                        int? status = student["attendance"]?[date];
-                        if (status == 1) totalP++; // Present
-                        if (status == 2) totalA++; // Absent
-                        if (status == 3) totalL++; // Late
-                        if (status == 4) totalH++; // Half-day
-                      }
+                        int totalP = 0, totalA = 0, totalL = 0, totalH = 0;
+                        int totalDays = dates.length;
 
-                      double attendancePercentage = totalDays > 0 ? (totalP / totalDays) * 100 : 0;
+                        for (var date in dates) {
+                          int? status = student["attendance"]?[date];
+                          if (status == 1) totalP++; // Present
+                          if (status == 2) totalA++; // Absent
+                          if (status == 3) totalL++; // Late
+                          if (status == 4) totalH++; // Half-day
+                        }
 
-                      return DataRow(
-                        color: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-                          return index % 2 == 0 ? Colors.grey.shade200 : Colors.white;
-                        }),
-                        cells: [
-                          DataCell(Center(child: Text(index.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)))),
-                          DataCell(Center(child: Text(student['student_id'].toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)))),
-                          DataCell(Center(child: Text(student['roll_no'].toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)))),
-                          DataCell(Center(child: Text(student["name"] ?? "Unknown", textAlign: TextAlign.center, style: TextStyle(fontSize: 15)))),
-                          ...dates.map((date) {
-                            int? status = student["attendance"]?[date];
-                            return DataCell(
-                              Center(
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                                  decoration: BoxDecoration(
-                                    color: _getAttendanceColor(status),
-                                    borderRadius: BorderRadius.circular(8),
+                        double attendancePercentage = totalDays > 0 ? (totalP / totalDays) * 100 : 0;
+
+                        return DataRow(
+                          color: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+                            return index % 2 == 0 ? Colors.grey.shade200 : Colors.white;
+                          }),
+                          cells: [
+                            DataCell(Center(child: Text(index.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)))),
+                            DataCell(Center(child: Text(student['student_id'].toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)))),
+                            DataCell(Center(child: Text(student['roll_no'].toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)))),
+                            DataCell(Center(child: Text(student["name"] ?? "Unknown", textAlign: TextAlign.center, style: TextStyle(fontSize: 15)))),
+                            ...dates.map((date) {
+                              int? status = student["attendance"]?[date];
+                              return DataCell(
+                                Center(
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                    decoration: BoxDecoration(
+                                      color: _getAttendanceColor(status),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Text(_mapAttendanceStatus(status), style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                   ),
-                                  child: Text(_mapAttendanceStatus(status), style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                 ),
-                              ),
-                            );
-                          }).toList(),
-                          DataCell(Center(child: Text(totalP.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.green)))),
-                          DataCell(Center(child: Text(totalA.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red)))),
-                          DataCell(Center(child: Text(totalL.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.blue)))),
-                          DataCell(Center(child: Text(totalH.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.orange)))),
-                          DataCell(Center(child: Text("${attendancePercentage.toStringAsFixed(2)}%", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.purple)))),
-                        ],
-                      );
-                    }).toList(),
+                              );
+                            }).toList(),
+                            DataCell(Center(child: Text(totalP.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.green)))),
+                            DataCell(Center(child: Text(totalA.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red)))),
+                            DataCell(Center(child: Text(totalL.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.blue)))),
+                            DataCell(Center(child: Text(totalH.toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.orange)))),
+                            DataCell(Center(child: Text("${attendancePercentage.toStringAsFixed(2)}%", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.purple)))),
+                          ],
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ),
@@ -578,14 +582,14 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue.shade200,
-        onPressed: (){
-          generateAndOpenPdf(students, dates);
-
-        },
-        child: Icon(Icons.picture_as_pdf,color: Colors.white,),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.blue.shade200,
+      //   onPressed: (){
+      //     generateAndOpenPdf(students, dates);
+      //
+      //   },
+      //   child: Icon(Icons.picture_as_pdf,color: Colors.white,),
+      // ),
     );
   }
 }

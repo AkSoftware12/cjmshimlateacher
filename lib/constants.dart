@@ -24,13 +24,22 @@ class AppAssets {
 }
 
 class ApiRoutes {
-  // static const String baseUrl = "https://apicjm.cjmambala.co.in/api";
+
+// Gallery App url
+  static const String baseUrl2 = "https://webcjm.cjmshimla.in/api";
+
+
+  // Main App Url
+  static const String baseUrl = "https://testapi.cjmshimla.in/api";
   // static const String baseUrl = "https://apicjm.cjmshimla.in/api";
-  static const String baseUrl = "https://softcjm.cjmshimla.in/api";
 
-  static const String baseUrl2 = "https://webcjm.cjmambala.co.in/api";
 
-  // static const String baseUrl = "http://192.168.1.7/CJM/api";
+
+  // Local App url
+  // static const String baseUrl = "http://192.168.1.4/cjm_shimla/api";
+
+
+
   static const String login = "$baseUrl/teacher-login";
   static const String getProfile = "$baseUrl/teacher";
   static const String getPhotos = "$baseUrl2/getPhotos";
@@ -40,6 +49,7 @@ class ApiRoutes {
   static const String getDashboard = "$baseUrl/dashboard";
   static const String getFees = "$baseUrl/get-fees";
   static const String getAssignments = "$baseUrl/teacher-assignment";
+  static const String getAssignmentsDeatils = "$baseUrl/teacher-assignment/";
   // static const String getTimeTable = "$baseUrl/teacher-subjects";
   static const String getTimeTable = "$baseUrl/teacher-timetable?day=";
   static const String getSubject = "$baseUrl/get-subjects";
@@ -50,4 +60,9 @@ class ApiRoutes {
   static const String notifications = "$baseUrl/teacher-notifications";
   static const String getClass = "$baseUrl/teacher-student-atttendance";
   static const String getTeacherSubject = "$baseUrl/teacher-assigned-subjects";
+  static const String getlibrary = "$baseUrl/library-get";
+  static const String getBookTypes = "$baseUrl/book-types";
+  static const String getBookCategories = "$baseUrl/book-categories";
+  static const String getBookPublishers = "$baseUrl/book-publishers";
+  static const String getBookSupplier= "$baseUrl/book-supplier";
 }

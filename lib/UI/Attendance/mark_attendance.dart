@@ -362,123 +362,127 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
             Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Container(
-                  padding:
-                  EdgeInsets.all(10), // Add padding around the table
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey.shade300,
-                          blurRadius: 5,
-                          spreadRadius: 2),
-                    ],
-                  ),
-                  child: DataTable(
-                    columnSpacing: 25.0,
-                    // Increase spacing
-                    headingRowHeight: 50.0,
-                    // Adjust heading height
-                    dataRowHeight: 55.0,
-                    // Adjust row height
-                    headingRowColor: MaterialStateColor.resolveWith(
-                            (states) => Colors.blue.shade100),
-                    // Light blue header
-                    border: TableBorder.all(color: Colors.grey.shade300),
-                    // Add border to table
-                    columns: const [
-                      DataColumn(
-                        label: Text('Student ID',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16)),
-                      ),
-                      DataColumn(
-                        label: Text('Roll No',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16)),
-                      ),
-                      DataColumn(
-                        label: Text('Name',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16)),
-                      ),
-                      DataColumn(
-                        label: Text('Attendance',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16)),
-                      ),
-                    ],
-                    rows: students.asMap().entries.map((entry) {
-                      int index = entry.key;
-                      var student = entry.value;
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
 
-                      return DataRow(
-                        color: MaterialStateColor.resolveWith((states) =>
-                        index.isEven
-                            ? Colors.white
-                            : Colors.grey.shade100),
-                        // Alternate row color
-                        cells: [
-                          DataCell(
-                            Text(
-                              student['student_id'].toString(),
+                  child: Container(
+                    padding:
+                    EdgeInsets.all(10), // Add padding around the table
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.shade300,
+                            blurRadius: 5,
+                            spreadRadius: 2),
+                      ],
+                    ),
+                    child: DataTable(
+                      columnSpacing: 25.0,
+                      // Increase spacing
+                      headingRowHeight: 50.0,
+                      // Adjust heading height
+                      dataRowHeight: 55.0,
+                      // Adjust row height
+                      headingRowColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.blue.shade100),
+                      // Light blue header
+                      border: TableBorder.all(color: Colors.grey.shade300),
+                      // Add border to table
+                      columns: const [
+                        DataColumn(
+                          label: Text('Student ID',
                               style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          DataCell(
-                            Text(
-                              student['roll_no'].toString(),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16)),
+                        ),
+                        DataColumn(
+                          label: Text('Roll No',
                               style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          DataCell(
-                            Text(
-                              student['student_name'].toString(),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16)),
+                        ),
+                        DataColumn(
+                          label: Text('Name',
                               style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16)),
+                        ),
+                        DataColumn(
+                          label: Text('Attendance',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16)),
+                        ),
+                      ],
+                      rows: students.asMap().entries.map((entry) {
+                        int index = entry.key;
+                        var student = entry.value;
+
+                        return DataRow(
+                          color: MaterialStateColor.resolveWith((states) =>
+                          index.isEven
+                              ? Colors.white
+                              : Colors.grey.shade100),
+                          // Alternate row color
+                          cells: [
+                            DataCell(
+                              Text(
+                                student['student_id'].toString(),
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500),
+                              ),
                             ),
-                          ),
-                          DataCell(
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
-                              children: [
-                                _attendanceRadioButton(
-                                    student['student_id'].toString(),
-                                    1,
-                                    "P",
-                                    Colors.green),
-                                _attendanceRadioButton(
-                                    student['student_id'].toString(),
-                                    2,
-                                    "A",
-                                    Colors.red),
-                                _attendanceRadioButton(
-                                    student['student_id'].toString(),
-                                    3,
-                                    "L",
-                                    Colors.blue),
-                                _attendanceRadioButton(
-                                    student['student_id'].toString(),
-                                    4,
-                                    "H",
-                                    Colors.orange),
-                              ],
+                            DataCell(
+                              Text(
+                                student['roll_no'].toString(),
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500),
+                              ),
                             ),
-                          ),
-                        ],
-                      );
-                    }).toList(),
+                            DataCell(
+                              Text(
+                                student['student_name'].toString(),
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            DataCell(
+                              Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  _attendanceRadioButton(
+                                      student['student_id'].toString(),
+                                      1,
+                                      "P",
+                                      Colors.green),
+                                  _attendanceRadioButton(
+                                      student['student_id'].toString(),
+                                      2,
+                                      "A",
+                                      Colors.red),
+                                  _attendanceRadioButton(
+                                      student['student_id'].toString(),
+                                      3,
+                                      "L",
+                                      Colors.blue),
+                                  _attendanceRadioButton(
+                                      student['student_id'].toString(),
+                                      4,
+                                      "H",
+                                      Colors.orange),
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ),

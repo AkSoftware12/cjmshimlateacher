@@ -439,57 +439,57 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
                               );
                             },
                           ),
-                          Padding(
-                            padding:
-                            EdgeInsets.only(left: 8, right: 8),
-                            child: Divider(
-                              height: 1,
-                              color: Colors.grey.shade300,
-                              thickness: 1,
-                            ),
-                          ),
-
-                          ListTile(
-                            title: Text(
-                              'Fees',
-                              style: GoogleFonts.cabin(
-                                textStyle: TextStyle(
-                                    color:AppColors.textblack,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            trailing: Container(
-                              height: 20,
-                              width: 20,
-                              color: AppColors.primary,
-                              child: Icon(Icons.currency_rupee,color:AppColors.textblack,)
-
-
-                              // Image.asset(
-                              //   'assets/assignments.png',
-                              //   height: 80, // Adjust the size as needed
-                              //   width: 80,
-                              // ),
-
-                            ),
-                            onTap: () {
-                              Navigator.pop(context);
-
-                              // Navigate to the Profile screen in the BottomNavigationBar
-                              setState(() {
-                                _selectedIndex = 3; // Index of the Profile screen in _screens
-                              });
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) {
-                              //       return DownloadPdf();
-                              //     },
-                              //   ),
-                              // );
-                            },
-                          ),
+                          // Padding(
+                          //   padding:
+                          //   EdgeInsets.only(left: 8, right: 8),
+                          //   child: Divider(
+                          //     height: 1,
+                          //     color: Colors.grey.shade300,
+                          //     thickness: 1,
+                          //   ),
+                          // ),
+                          //
+                          // ListTile(
+                          //   title: Text(
+                          //     'Fees',
+                          //     style: GoogleFonts.cabin(
+                          //       textStyle: TextStyle(
+                          //           color:AppColors.textblack,
+                          //           fontSize: 15,
+                          //           fontWeight: FontWeight.normal),
+                          //     ),
+                          //   ),
+                          //   trailing: Container(
+                          //     height: 20,
+                          //     width: 20,
+                          //     color: AppColors.primary,
+                          //     child: Icon(Icons.currency_rupee,color:AppColors.textblack,)
+                          //
+                          //
+                          //     // Image.asset(
+                          //     //   'assets/assignments.png',
+                          //     //   height: 80, // Adjust the size as needed
+                          //     //   width: 80,
+                          //     // ),
+                          //
+                          //   ),
+                          //   onTap: () {
+                          //     Navigator.pop(context);
+                          //
+                          //     // Navigate to the Profile screen in the BottomNavigationBar
+                          //     setState(() {
+                          //       _selectedIndex = 3; // Index of the Profile screen in _screens
+                          //     });
+                          //     // Navigator.push(
+                          //     //   context,
+                          //     //   MaterialPageRoute(
+                          //     //     builder: (context) {
+                          //     //       return DownloadPdf();
+                          //     //     },
+                          //     //   ),
+                          //     // );
+                          //   },
+                          // ),
                           Padding(
                             padding:
                             EdgeInsets.only(left: 8, right: 8),
@@ -706,40 +706,40 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
 
                             },
                           ),
-                          Padding(
-                            padding:
-                            EdgeInsets.only(left: 8, right: 8),
-                            child: Divider(
-                              height: 1,
-                              color: Colors.grey.shade300,
-                              thickness: 1,
-                            ),
-                          ),
-                          ListTile(
-                            title: Text(
-                              'FAQs',
-                              style: GoogleFonts.cabin(
-                                textStyle: TextStyle(
-                                    color:AppColors.textblack,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            trailing: Container(
-                                height: 20,
-                                width: 20,
-                                child: Image.asset('assets/faq.png',color: AppColors.textblack,)),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return FaqScreen(appBar: 'FAQ',);
-                                  },
-                                ),
-                              );
-                            },
-                          ),
+                          // Padding(
+                          //   padding:
+                          //   EdgeInsets.only(left: 8, right: 8),
+                          //   child: Divider(
+                          //     height: 1,
+                          //     color: Colors.grey.shade300,
+                          //     thickness: 1,
+                          //   ),
+                          // ),
+                          // ListTile(
+                          //   title: Text(
+                          //     'FAQs',
+                          //     style: GoogleFonts.cabin(
+                          //       textStyle: TextStyle(
+                          //           color:AppColors.textblack,
+                          //           fontSize: 15,
+                          //           fontWeight: FontWeight.normal),
+                          //     ),
+                          //   ),
+                          //   trailing: Container(
+                          //       height: 20,
+                          //       width: 20,
+                          //       child: Image.asset('assets/faq.png',color: AppColors.textblack,)),
+                          //   onTap: () {
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //         builder: (context) {
+                          //           return FaqScreen(appBar: 'FAQ',);
+                          //         },
+                          //       ),
+                          //     );
+                          //   },
+                          // ),
                           Padding(
                             padding:
                             EdgeInsets.only(left: 8, right: 8),
@@ -774,7 +774,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
                                     return WebViewExample(
                                       title: 'Privacy',
                                       url:
-                                      'https://ksadmission.in/privacy-policy',
+                                      'https://www.freeprivacypolicy.com/live/cd60204c-2053-427b-b4a8-95f4e4247585',
                                     );
                                   },
                                 ),
@@ -815,7 +815,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
                                     return WebViewExample(
                                       title: 'Terms & Condition',
                                       url:
-                                      'https://ksadmission.in/privacy-policy',
+                                      'https://www.freeprivacypolicy.com/live/cd60204c-2053-427b-b4a8-95f4e4247585',
                                     );
                                   },
                                 ),

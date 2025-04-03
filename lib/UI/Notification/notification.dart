@@ -95,16 +95,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
         ),
         centerTitle: false,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.white, Colors.grey.shade200],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: isLoading
-            ? const Center(child: CircularProgressIndicator())
+      body: isLoading
+          ? WhiteCircularProgressWidget()
+          : notifications.isEmpty
+          ? Center(
+          child: DataNotFoundWidget(
+            title: 'Notification  Not Available.',
+          ))
+
             : RefreshIndicator(
           onRefresh: fetchSubjectData,
           child: ListView.builder(
@@ -165,7 +163,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
             },
           ),
         ),
-      ),
     );
   }
 }
