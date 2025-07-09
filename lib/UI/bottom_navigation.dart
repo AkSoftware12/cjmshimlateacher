@@ -409,7 +409,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
 
                           ListTile(
                             title: Text(
-                              'Assignments',
+                              'Home Work',
                               style: GoogleFonts.cabin(
                                 textStyle: TextStyle(
                                     color:AppColors.textblack,
@@ -740,89 +740,89 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
                           //     );
                           //   },
                           // ),
-                          Padding(
-                            padding:
-                            EdgeInsets.only(left: 8, right: 8),
-                            child: Divider(
-                              height: 1,
-                              color: Colors.grey.shade300,
-                              thickness: 1,
-                            ),
-                          ),
-                          ListTile(
-                            title: Text(
-                              'Privacy',
-                              style: GoogleFonts.cabin(
-                                textStyle: TextStyle(
-                                    color:AppColors.textblack,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            trailing: Container(
-                                height: 20,
-                                width: 20,
-                                child: Icon(
-                                  Icons.privacy_tip,
-                                  color:AppColors.textblack,
-                                )),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return WebViewExample(
-                                      title: 'Privacy',
-                                      url:
-                                      'https://www.freeprivacypolicy.com/live/cd60204c-2053-427b-b4a8-95f4e4247585',
-                                    );
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                          Padding(
-                            padding:
-                            EdgeInsets.only(left: 8, right: 8),
-                            child: Divider(
-                              height: 1,
-                              color: Colors.grey.shade300,
-                              thickness: 1,
-                            ),
-                          ),
-                          ListTile(
-                            title: Text(
-                              'Terms & Condition',
-                              style: GoogleFonts.cabin(
-                                textStyle: TextStyle(
-                                    color:AppColors.textblack,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                            trailing: Container(
-                                height: 20,
-                                width: 20,
-                                child: Icon(
-                                  Icons.event_note_outlined,
-                                  color:AppColors.textblack,
-                                )),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return WebViewExample(
-                                      title: 'Terms & Condition',
-                                      url:
-                                      'https://www.freeprivacypolicy.com/live/cd60204c-2053-427b-b4a8-95f4e4247585',
-                                    );
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-
+                          // Padding(
+                          //   padding:
+                          //   EdgeInsets.only(left: 8, right: 8),
+                          //   child: Divider(
+                          //     height: 1,
+                          //     color: Colors.grey.shade300,
+                          //     thickness: 1,
+                          //   ),
+                          // ),
+                          // ListTile(
+                          //   title: Text(
+                          //     'Privacy',
+                          //     style: GoogleFonts.cabin(
+                          //       textStyle: TextStyle(
+                          //           color:AppColors.textblack,
+                          //           fontSize: 15,
+                          //           fontWeight: FontWeight.normal),
+                          //     ),
+                          //   ),
+                          //   trailing: Container(
+                          //       height: 20,
+                          //       width: 20,
+                          //       child: Icon(
+                          //         Icons.privacy_tip,
+                          //         color:AppColors.textblack,
+                          //       )),
+                          //   onTap: () {
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //         builder: (context) {
+                          //           return WebViewExample(
+                          //             title: 'Privacy',
+                          //             url:
+                          //             'https://www.freeprivacypolicy.com/live/cd60204c-2053-427b-b4a8-95f4e4247585',
+                          //           );
+                          //         },
+                          //       ),
+                          //     );
+                          //   },
+                          // ),
+                          // Padding(
+                          //   padding:
+                          //   EdgeInsets.only(left: 8, right: 8),
+                          //   child: Divider(
+                          //     height: 1,
+                          //     color: Colors.grey.shade300,
+                          //     thickness: 1,
+                          //   ),
+                          // ),
+                          // ListTile(
+                          //   title: Text(
+                          //     'Terms & Condition',
+                          //     style: GoogleFonts.cabin(
+                          //       textStyle: TextStyle(
+                          //           color:AppColors.textblack,
+                          //           fontSize: 15,
+                          //           fontWeight: FontWeight.normal),
+                          //     ),
+                          //   ),
+                          //   trailing: Container(
+                          //       height: 20,
+                          //       width: 20,
+                          //       child: Icon(
+                          //         Icons.event_note_outlined,
+                          //         color:AppColors.textblack,
+                          //       )),
+                          //   onTap: () {
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //         builder: (context) {
+                          //           return WebViewExample(
+                          //             title: 'Terms & Condition',
+                          //             url:
+                          //             'https://www.freeprivacypolicy.com/live/cd60204c-2053-427b-b4a8-95f4e4247585',
+                          //           );
+                          //         },
+                          //       ),
+                          //     );
+                          //   },
+                          // ),
+                          //
 
 
                           Padding(

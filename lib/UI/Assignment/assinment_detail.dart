@@ -341,7 +341,7 @@ class _AssignmentDetailScreenState extends State<AssignmentDetailScreen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => WebViewPage(
-                                                // url: student['attach_url']
+                                                url: student['attach_url']
                                                 )),
                                       );
                                     },

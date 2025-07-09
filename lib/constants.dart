@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'HexColorCode/HexColor.dart';
 
 class AppColors {
@@ -7,7 +6,7 @@ class AppColors {
   static  Color primary = HexColor('#f5f1e0'); // Example primary color (blue)
   static  Color secondary =HexColor('#7da4d1'); // Secondary color (gray)
   // static const Color secondary = Color(0xFF074799); // Secondary color (gray)
-  static const Color grey = Color(0xFFAAAEB2); // Secondary color (gray)
+  static  Color grey = Color(0xFFAAAEB2); // Secondary color (gray)
   static const Color background = Color(0xFFF8F9FA); // Light background color
   static const Color textblack = Color(0xFF212529); // Dark text color
     static const Color textwhite = Color.fromARGB(255, 255, 255, 255); // Dark text color
@@ -26,11 +25,12 @@ class AppAssets {
 class ApiRoutes {
 
 // Gallery App url
-  static const String baseUrl2 = "https://webcjm.cjmshimla.in/api";
+  static const String baseUrl2 = "https://cjmshimla.org/api";
 
 
   // Main App Url
-  static const String baseUrl = "https://testapi.cjmshimla.in/api";
+  static const String baseUrl = "https://softcjm.cjmshimla.in/api";
+  // static const String baseUrl = "https://testapi.cjmshimla.in/api";
   // static const String baseUrl = "https://apicjm.cjmshimla.in/api";
 
 

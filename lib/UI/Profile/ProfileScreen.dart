@@ -91,21 +91,24 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primary,
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.red,
-        icon: const Icon(Icons.logout, color: Colors.white),
-        label: const Text(
-          'Logout',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      floatingActionButton: SizedBox(
+        height: 30.sp,
+        child: FloatingActionButton.extended(
+          backgroundColor: Colors.red,
+          icon:  Icon(Icons.logout, color: Colors.white,size: 15.sp,),
+          label:  Text(
+            'Logout',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 12.sp),
+          ),
+          onPressed: () async {
+            final prefs = await SharedPreferences.getInstance();
+            await prefs.clear(); // Clear the stored token
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginPage()),
+            );
+          },
         ),
-        onPressed: () async {
-          final prefs = await SharedPreferences.getInstance();
-          await prefs.clear(); // Clear the stored token
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const LoginPage()),
-          );
-        },
       ),
       body: isLoading
           ? _buildShimmerLoading()
@@ -117,8 +120,8 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
           child: Column(
             children: [
               Container(
-                height: 150,
-                padding:  EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                height: MediaQuery.of(context).size.width*0.35,
+                padding:  EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
                 decoration:  BoxDecoration(
                   gradient: LinearGradient(
                     colors: [AppColors.primary, AppColors.primary],
@@ -134,8 +137,8 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                   children: [
                     // Profile Image
                     SizedBox(
-                      height: 120,
-                      width: 120,
+                      height: 90.sp,
+                      width: 90.sp,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Image.network(
@@ -144,8 +147,8 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                           errorBuilder: (context, error, stackTrace) {
                             // This widget will be displayed if the image fails to load
                             return Container(
-                              height: 120,
-                              width: 120,
+                              height: 100.sp,
+                              width: 100.sp,
                               color: Colors.white,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
@@ -160,18 +163,18 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                       ),
 
                     ),
-                    const SizedBox(width: 16),
+                    SizedBox(width: 16.sp),
                     // User Info
                     Expanded(
 
                       child: Container(
-                        height: 150,
+                        height: 90.sp,
                         child: Center(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              const SizedBox(height: 10),
+                              SizedBox(height: 10.sp),
 
                               Text(
                                 '${teacherData?['first_name']??''} ${teacherData?['last_name']??''}',
@@ -197,7 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                                   color: Colors.grey,
                                 ),
                               ),
-                              const SizedBox(height: 10),
+                              SizedBox(height: 8.sp),
 
                             ],
                           ),
@@ -209,7 +212,6 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
               ),
 
 
-               SizedBox(height: 20.sp),
               _buildAnimatedSection('Personal Information', [
                 buildProfileRow('Name', '${teacherData?['first_name']??''} ${teacherData?['last_name']??''}'),
                 buildProfileRow('Date of Birth', teacherData?['dob']??''),
@@ -231,7 +233,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
               //   ),
               //   buildProfileRow('Admission Number', teacherData?['adm_no']??''),
               // ]),
-              const SizedBox(height: 20),
+              SizedBox(height: 8.sp),
               _buildAnimatedSection('Contact Information', [
                 buildProfileRow('Father Name', teacherData?['fs_name']??''),
                 buildProfileRow('Father Contact', teacherData?['fs_phone']??''),
@@ -249,38 +251,41 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
   }
 
   Widget _buildAnimatedSection(String title, List<Widget> rows) {
-    return AnimatedContainer(
-      duration: const Duration(seconds: 10 ),
-      curve: Curves.easeInOut,
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: AppColors.primary,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            blurRadius: 10,
-            spreadRadius: 2,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style:  TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.textblack),
-          ),
-          const SizedBox(height: 10),
-          Column(children: rows),
-        ],
+    return Padding(
+      padding:  EdgeInsets.all(5.sp),
+      child: AnimatedContainer(
+        duration: const Duration(seconds: 10 ),
+        curve: Curves.easeInOut,
+        padding:  EdgeInsets.all(12.sp),
+        decoration: BoxDecoration(
+          color: AppColors.primary,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 10,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style:  TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w800, color: AppColors.textblack),
+            ),
+            SizedBox(height: 8.sp),
+            Column(children: rows),
+          ],
+        ),
       ),
     );
   }
 
   Widget buildProfileRow(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding:  EdgeInsets.symmetric(vertical: 6.sp),
       child: SingleChildScrollView(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start, // Align the row to start

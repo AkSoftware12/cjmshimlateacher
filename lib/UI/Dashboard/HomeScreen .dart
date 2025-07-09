@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -39,17 +40,17 @@ class _HomeScreenState extends State<HomeScreen> {
   late CleanCalendarController calendarController;
   final List<Map<String, String>> items = [
     {
-      'name': 'Assignments',
+      'name': 'Home Work',
       'image': 'assets/assignments.png',
     },
     {
       'name': 'Time Table',
       'image': 'assets/watch.png',
     },
-    {
-      'name': 'Home Work',
-      'image': 'assets/home_work.png',
-    },
+    // {
+    //   'name': 'Home Work',
+    //   'image': 'assets/home_work.png',
+    // },
     // {
     //   'name': 'Subject',
     //   'image': 'assets/physics.png',
@@ -214,20 +215,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     height: 220,
                     width: double.infinity,
-                    child: Image.network(
-                      'https://webcjm.cjmshimla.in/upload/banners/1740211232_cjmshimlabanner1.png',
+                    child: CachedNetworkImage(
+                      imageUrl: 'https://cjmshimla.org/upload/banners/1740211243_cjmshimlabanner2.png',
                       fit: BoxFit.fill,
-                    ),
-                  ),
+                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
 
-                  Container(
-                    height: 220,
-                    width: double.infinity,
-                    child: Image.network(
-                      'https://webcjm.cjmshimla.in/upload/banners/1740211256_cjmshimlabanner3.png',
-                      fit: BoxFit.fill,
                     ),
-                  ),
+                  )
+
+
 
 
 
@@ -349,7 +346,7 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              if (items[index]['name'] == 'Assignments') {
+              if (items[index]['name'] == 'Home Work') {
 
                 Navigator.push(
                   context,
@@ -756,9 +753,8 @@ class CarouselExample extends StatefulWidget {
 
 class _CarouselExampleState extends State<CarouselExample> {
   final List<String> imgList = [
-    'https://webcjm.cjmshimla.in/upload/banners/1740211232_cjmshimlabanner1.png',
-    'https://webcjm.cjmshimla.in/upload/banners/1740211243_cjmshimlabanner2.png',
-    'https://webcjm.cjmshimla.in/upload/banners/1740211256_cjmshimlabanner3.png',
+  'https://cjmshimla.org/upload/banners/1740211243_cjmshimlabanner2.png',
+    'https://cjmshimla.org/upload/banners/1740211232_cjmshimlabanner1.png'
   ];
 
   int _currentIndex = 0;

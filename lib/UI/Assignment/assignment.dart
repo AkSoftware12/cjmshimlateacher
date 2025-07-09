@@ -4,7 +4,6 @@ import 'package:cjmshimlateacher/UI/Assignment/upload_assignments.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
@@ -56,10 +55,10 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
     final token = prefs.getString('token');
     print("Token: $token");
 
-    if (token == null) {
-      _showLoginDialog();
-      return;
-    }
+    // if (token == null) {
+    //   _showLoginDialog();
+    //   return;
+    // }
 
     final response = await http.get(
       Uri.parse(ApiRoutes.getAssignments),
@@ -76,7 +75,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
 // Update state with fetched data
       });
     } else {
-      _showLoginDialog();
+      // _showLoginDialog();
       setState(() {
         isLoading = false;
       });
@@ -110,79 +109,6 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: AppColors.secondary,
-
-      // appBar: AppBar(
-      //   iconTheme: IconThemeData(color: AppColors.textwhite),
-      //     backgroundColor: AppColors.secondary,
-      //
-      //     title: Text('Assignments',
-      //         style: GoogleFonts.poppins(
-      //         textStyle: Theme.of(context).textTheme.displayLarge,
-      //   fontSize: 20,
-      //   fontWeight: FontWeight.w600,
-      //   fontStyle: FontStyle.normal,
-      //   color: AppColors.textwhite,
-      // ),
-      //     ),
-      //   actions: [
-      //     Padding(
-      //       padding:  EdgeInsets.only(right: 8.sp),
-      //       child:Container(
-      //         height: 30.sp,
-      //         decoration: BoxDecoration(
-      //           gradient: const LinearGradient(
-      //             colors: [Colors.blue, Colors.purple], // Gradient colors
-      //             begin: Alignment.topLeft,
-      //             end: Alignment.bottomRight,
-      //           ),
-      //           borderRadius: BorderRadius.circular(20.sp), // Optional: Rounded corners
-      //         ),
-      //         child:
-      //         ElevatedButton.icon(
-      //           style: ElevatedButton.styleFrom(
-      //             backgroundColor: Colors.transparent, // Make button transparent
-      //             shadowColor: Colors.transparent, // Remove shadow
-      //             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-      //           ),
-      //           onPressed: () {
-      //             Navigator.push(
-      //               context,
-      //               PageRouteBuilder(
-      //                 transitionDuration: Duration(milliseconds: 500), // Animation Speed
-      //                 pageBuilder: (context, animation, secondaryAnimation) => AssignmentUploadScreen(onReturn: _refresh),
-      //                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      //                   var begin = Offset(1.0, 0.0); // Right to Left
-      //                   var end = Offset.zero;
-      //                   var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: Curves.easeInOut));
-      //
-      //                   return SlideTransition(
-      //                     position: animation.drive(tween),
-      //                     child: child,
-      //                   );
-      //                 },
-      //               ),
-      //             );
-      //           },
-      //           icon: Icon(Icons.cloud_upload_outlined,size: 16.sp,color: Colors.white,), // Upload icon
-      //           label: Text('Create Task',
-      //             style: GoogleFonts.poppins(
-      //               textStyle: Theme.of(context).textTheme.displayLarge,
-      //               fontSize: 12.sp,
-      //               fontWeight: FontWeight.w700,
-      //               fontStyle: FontStyle.normal,
-      //               color: AppColors.textwhite,
-      //             ),
-      //           ),
-      //         ),
-      //       )
-      //
-      //
-      //     ),
-      //
-      //
-      //   ],
-      // ),
       body: Stack(
         children: [
           Container(
@@ -245,7 +171,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                                         width: 10.sp,
                                       ),
                                       Text(
-                                        'Assignment',
+                                        'Home Work',
                                         style: GoogleFonts.poppins(
                                           textStyle: Theme.of(context)
                                               .textTheme
@@ -361,7 +287,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                   ),
                   SizedBox(width: 8.sp), // Spacing between icon and text
                   Text(
-                    'Assignment List',
+                    'Home Work List',
                     style: GoogleFonts.poppins(
                       textStyle: Theme.of(context).textTheme.displayLarge,
                       fontSize: TextSizes.textmedium,
@@ -387,7 +313,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                     : assignments.isEmpty
                         ? Center(
                             child: DataNotFoundWidget(
-                            title: 'Assignments  Not Available.',
+                            title: 'Home Work  Not Available.',
                           ))
                         : Stack(
                             children: [
@@ -741,7 +667,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
             ],
           ),
           content: const Text(
-            "Are you sure you want to delete this assignment?",
+            "Are you sure you want to delete this home work?",
             style: TextStyle(fontSize: 16),
           ),
           actions: [
@@ -784,13 +710,13 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
                 Icon(Icons.info_outline, color: Colors.blue, size: 50),
                 SizedBox(height: 12),
                 Text(
-                  "Update Assignment",
+                  "Update Home Work".toUpperCase(),
                   style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 18.sp),
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
                 ),
                 SizedBox(height: 8),
                 Text(
-                  "Are you sure you want to update this assignment?",
+                  "Are you sure you want to update this home work?",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 15.sp,
@@ -879,7 +805,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
               children: [
                 CircularProgressIndicator(),
                 SizedBox(width: 20),
-                Text("Deleting assignment..."),
+                Text("Deleting Home Work..."),
               ],
             ),
           );
@@ -909,7 +835,7 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
       if (response.statusCode == 200) {
         print("Assignment Deleted Successfully!");
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Assignment Deleted Successfully!")),
+          SnackBar(content: Text("Home Work Deleted Successfully!")),
         );
         _refresh();
 
@@ -920,11 +846,11 @@ class _AssignmentListScreenState extends State<AssignmentListScreen> {
       } else {
         print("Failed to Delete: ${response.statusCode}");
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Failed to delete assignment")),
+          SnackBar(content: Text("Failed to delete home work")),
         );
       }
     } catch (e) {
-      print("Error Deleting Assignment: $e");
+      print("Error Deleting Home Work: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error occurred while deleting")),
       );

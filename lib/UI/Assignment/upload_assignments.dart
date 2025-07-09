@@ -270,10 +270,10 @@ class _AssignmentUploadScreenState extends State<AssignmentUploadScreen> {
       backgroundColor: AppColors.primary,
 
       appBar: AppBar(
-        title: Text("Upload Assignment",
+        title: Text("Upload Home Work".toUpperCase(),
             style: GoogleFonts.montserrat(
               textStyle: Theme.of(context).textTheme.displayLarge,
-              fontSize: 18,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w500,
               fontStyle: FontStyle.normal,
               color: AppColors.textblack,
@@ -643,7 +643,7 @@ class _AssignmentUploadScreenState extends State<AssignmentUploadScreen> {
                                 strokeWidth: 3,
                               ),
                             )
-                                : Text("Upload Assignment", style: TextStyle(fontSize: 16, color: Colors.white)),
+                                : Text("Upload".toUpperCase(), style: TextStyle(fontSize: 16, color: Colors.white)),
                           ),
 
 

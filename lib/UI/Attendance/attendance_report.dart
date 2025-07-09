@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -417,7 +418,7 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
 
             // Dropdowns for Class and Section
 
-            SizedBox(height: 10),
+            SizedBox(height: 10.sp),
 
             // Date Selection Row
             DateRangeSelector(
@@ -443,7 +444,7 @@ class _MonthlyAttendanceScreenState extends State<MonthlyAttendanceScreen> {
               ),
               child: Padding(
                 padding: EdgeInsets.all(5.0),
-                child: Text('Attendance List', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black), textAlign: TextAlign.center),
+                child: Text('Attendance List', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp, color: Colors.black), textAlign: TextAlign.center),
               ),
             ),
             SizedBox(height: 10,),
@@ -629,22 +630,22 @@ class DateRangeSelector extends StatelessWidget {
           OutlinedButton.icon(
             onPressed: () => onSelectDateRange(context),
             icon: const Icon(Icons.calendar_today, color: Colors.blueAccent),
-            label: const Text(
-              "Select Date Range",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            label:  Text(
+              "Select Date",
+              style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
             ),
             style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding:  EdgeInsets.symmetric(horizontal: 12.sp, vertical: 10.sp),
               side: const BorderSide(color: Colors.blueAccent),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
           ),
-          const SizedBox(width: 16), // Spacing between button and container
+           SizedBox(width: 12.sp), // Spacing between button and container
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(14),
+              padding:  EdgeInsets.all(10.sp),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
@@ -654,7 +655,7 @@ class DateRangeSelector extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildDateRow("From:", startDate),
-                  const Divider(height: 10, color: Colors.blueAccent),
+                   Divider(height: 8.sp, color: Colors.blueAccent),
                   _buildDateRow("To:", endDate),
                 ],
               ),
@@ -671,18 +672,18 @@ class DateRangeSelector extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 16,
+          style:  TextStyle(
+            fontSize: 12.sp,
             fontWeight: FontWeight.bold,
             color: Colors.blueGrey,
           ),
         ),
         Text(
           date != null ? DateFormat('dd-MM-yyyy').format(date) : "Select Date",
-          style: const TextStyle(
-            fontSize: 16,
+          style:  TextStyle(
+            fontSize: 12.sp,
             color: Colors.black87,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],

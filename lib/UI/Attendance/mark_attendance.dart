@@ -69,8 +69,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = json.decode(response.body);
         setState(() {
-          classes =
-          List<Map<String, dynamic>>.from(responseData['data']['classes']);
+          classes = List<Map<String, dynamic>>.from(responseData['data']['classes']);
           sections =
           List<Map<String, dynamic>>.from(responseData['data']['sections']);
           isLoading = false;
@@ -257,22 +256,36 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 }
               },
               child: Container(
-                padding:
-                EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                padding: EdgeInsets.symmetric(vertical: 14, horizontal: 20),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.white,
+                  border: Border.all(color: Colors.blueGrey.withOpacity(0.6)),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blueGrey.withOpacity(0.1),
+                      blurRadius: 8,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(DateFormat('yyyy-MM-dd').format(selectedDate)),
-                    Icon(Icons.calendar_today, color: Colors.blueAccent),
+                    Text(
+                      DateFormat('dd MMM, yyyy').format(selectedDate),
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    Icon(Icons.calendar_month, color: Colors.blueGrey),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 12.sp),
 
             Row(
               children: [
@@ -282,19 +295,34 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     value: selectedClass,
                     decoration: InputDecoration(
                       labelText: "Select Class",
-                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.class_,size: 15.sp,color: Colors.blueGrey,),
+                      labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(color: AppColors.primary),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(color:AppColors.primary, width: 2),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 15.sp, vertical: 12.sp),
                     ),
+                    icon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.black,size: 20.sp,),
+                    dropdownColor: Colors.white,
                     items: classes.map((c) {
                       return DropdownMenuItem<int>(
                         value: c["id"],
-                        child: Text(c["title"]),
+                        child: Text(
+                          c["title"],
+                          style: TextStyle(fontSize: 12.sp),
+                        ),
                       );
                     }).toList(),
                     onChanged: (value) {
                       setState(() {
                         selectedClass = value;
                         selectedSection = null;
-                        globalAttendance = null; // Clear global selection
+                        globalAttendance = null;
                         attendanceStatus.clear();
                         studentIds.clear();
                         attendances.clear();
@@ -304,40 +332,73 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   ),
                 ),
 
-                SizedBox(width: 16), // Space between dropdowns
+                SizedBox(width: 12.sp), // Space between dropdowns
 
                 // Section Dropdown (Only shows if a class is selected)
                 Expanded(
-                  child: DropdownButtonFormField<int>(
-                    value: selectedSection,
-                    decoration: InputDecoration(
-                      labelText: "Select Section",
-                      border: OutlineInputBorder(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          blurRadius: 8,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
                     ),
-                    items: sections
-                        .where((s) => s["class_id"] == selectedClass)
-                        .map((s) {
-                      return DropdownMenuItem<int>(
-                        value: s["section_id"],
-                        child: Text(s["section_title"].toString()),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedSection = value;
-                        globalAttendance = null; // Clear global selection
-                        attendanceStatus.clear();
-                        studentIds.clear();
-                        attendances.clear();
-                      });
-                      fetchAttendance();
-                    },
+                    child: DropdownButtonFormField<int>(
+                      value: selectedSection,
+                      decoration: InputDecoration(
+                        labelText: "Select Section",
+                        prefixIcon: Icon(Icons.class_, size: 18.sp, color: Colors.blueGrey),
+                        // filled: true,
+                        // fillColor: Colors.grey.shade50,
+                        labelStyle: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12.sp,
+                          color: Colors.blueGrey.shade700,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(color: AppColors.primary),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(color:AppColors.primary, width: 2),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 15.sp, vertical: 12.sp),
+                      ),
+                      items: sections
+                          .where((s) => s["class_id"] == selectedClass)
+                          .map((s) {
+                        return DropdownMenuItem<int>(
+                          value: s["section_id"],
+                          child: Text(
+                            s["section_title"].toString(),
+                            style: TextStyle(fontSize: 12.sp, color: Colors.black87),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedSection = value;
+                          globalAttendance = null;
+                          attendanceStatus.clear();
+                          studentIds.clear();
+                          attendances.clear();
+                        });
+                        fetchAttendance();
+                      },
+                      icon: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.grey.shade600),
+                      dropdownColor: Colors.white,
+                    ),
                   ),
-                ),
+                )
               ],
             ),
 
-            SizedBox(height: 16),
+            SizedBox(height: 12.sp),
 
             // **Global Attendance Selection**
             Card(
@@ -356,7 +417,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 12.sp),
 
             // **Attendance List**
             Expanded(
