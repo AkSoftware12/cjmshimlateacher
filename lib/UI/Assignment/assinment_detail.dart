@@ -337,13 +337,13 @@ class _AssignmentDetailScreenState extends State<AssignmentDetailScreen> {
                                     icon: const Icon(Icons.attach_file,
                                         color: Colors.blue),
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => WebViewPage(
-                                                url: student['attach_url']
-                                                )),
-                                      );
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //       builder: (context) => WebViewPage(
+                                      //           url: student['attach_url']
+                                      //           )),
+                                      // );
                                     },
                                   ),
                               ],
